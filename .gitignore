@@ -7,6 +7,16 @@ __pycache__
 *.swo
 *.log
 .DS_Store
+*.tex~
+*.aux
+*.dvi
+
+anon_bo_lists.csv
+anon_bo_lists.csv.gz
+anon_bo_threads.csv
+anon_bo_threads.csv.gz
+bargaining_data.zip
+sequential_bargaining_QJE_code.zip
 
 
 
