@@ -34,10 +34,13 @@ def main():
     with open("../ebay_best_offer_bargaining_data/anon_bo_lists.csv", mode='r') as data_set:
         csv_reader = csv.reader(data_set)
         line_count = 0
+        max_rows_count = 10000000
         for row in csv_reader:
             if line_count == 0:
                 line_count += 1
                 continue
+            if line_count == max_rows_count:
+                break
             print(row)
             if int(row[0]) == anon_item_id:
                 listings.append(row)
@@ -105,7 +108,6 @@ def main():
 
     #    if listing_bool:
     #        listings.append(listing)
->>>>>>> refs/remotes/origin/master
         
         #if listing_threads_tmp.size != 0:
         #if len(listing_therads_tmp) != 0:
