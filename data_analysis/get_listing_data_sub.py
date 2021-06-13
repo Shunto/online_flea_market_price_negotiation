@@ -28,61 +28,40 @@ def main():
         if opt == "-h":
             usage()
 
-    listings = []
     print("test loading listing data completed, it took {:f} seconds".format(time.time() - start_time))
     loading_listing_data_start_time = time.time()
-    with open("../ebay_best_offer_bargaining_data/anon_bo_lists.csv", mode='r') as data_set:
-        csv_reader = csv.reader(data_set)
-        line_count = 0
-        for row in csv_reader:
-            if line_count == 0:
-                line_count += 1
-                continue
-            print(row)
-            if int(row[0]) == anon_item_id:
-                listings.append(row)
-            
-            #data.append(row)
-            line_count += 1
-            
     # loading listing data (anon_bo_lists_tmp.csv)
-    #all_listings = np.genfromtxt("../ebay_best_offer_bargaining_data/anon_bo_lists.csv", delimiter=",")
+    all_listings = np.genfromtxt("../ebay_best_offer_bargaining_data/anon_bo_lists.csv", delimiter=",")
     #all_listings = np.genfromtxt("../ebay_best_offer_bargaining_data/anon_bo_lists_tmp.csv", delimiter=",")
-    loading_time = time.time() - loading_listing_data_start_time
-    #with open("result.txt", mode='w') as result:
-        #print("loading listing data completed, it took {:f} seconds".format(time.time() - loading_listing_data_start_time))
-        #result.write("loading listing data completed, it took" + str(time.time() - loading_listing_data_start_time) + "seconds")
-        #print("total time: {:f}".format(time.time() - start_time))
+    print("loading listing data completed, it took {:f} seconds".format(time.time() - loading_listing_data_start_time))
+    print("total time: {:f}".format(time.time() - start_time))
     #all_listings = np.genfromtxt("../ebay_best_offer_bargaining_data/anon_bo_lists_tmp_2.csv", delimiter=",")
     
     # loading listing thread data (anon_bo_threads.csv)
-    #all_listing_threads = np.genfromtxt("../ebay_best_offer_bargaining_data/anon_bo_threads.csv", delimiter=",")
+    all_listing_threads = np.genfromtxt("../ebay_best_offer_bargaining_data/anon_bo_threads.csv", delimiter=",")
     #all_listing_threads = np.genfromtxt("../ebay_best_offer_bargaining_data/anon_bo_threads_tmp.csv", delimiter=",")
-    #loading_listing_threads_data_start_time = time.time()
-    #print("loading listing threads data completed, it took {:f} seconds".format(time.time() - loading_listing_threads_data_start_time))
-    #print("total time: {:f}".format(time.time() - start_time))
+    loading_listing_threads_data_start_time = time.time()
+    print("loading listing threads data completed, it took {:f} seconds".format(time.time() - loading_listing_threads_data_start_time))
+    print("total time: {:f}".format(time.time() - start_time))
     
     #all_listing_threads = np.genfromtxt("../ebay_best_offer_bargaining_data/anon_bo_threads_tmp_2.csv", delimiter=",")
     #print(all_listing_threads[0:10])
 
     # saving to listings the listings corresponding to the anon_item_id
-    #searching_listing_threads_data_start_time = time.time()
-    #listings = all_listings[all_listings[:, 0] == anon_item_id]
-    #print("searching listing data for the specified item id completed, it took {:f} seconds".format(time.time() - searching_listing_threads_data_start_time))
-    #print("total time: {:f}".format(time.time() - start_time))
+    searching_listing_threads_data_start_time = time.time()
+    listings = all_listings[all_listings[:, 0] == anon_item_id]
+    print("searching listing data for the specified item id completed, it took {:f} seconds".format(time.time() - searching_listing_threads_data_start_time))
+    print("total time: {:f}".format(time.time() - start_time))
 
     # saving to listing_threads the threads corresponding to the anon_item_id
-    #searching_listing_threads_data_start_time = time.time()
-    #listing_threads = all_listing_threads[all_listing_threads[:, 0] == anon_item_id]
-    #print("searching listing threads data for the specified item id completed, it took {:f} seconds".format(time.time() - searching_listing_threads_data_start_time))
-    #print("total time: {:f}".format(time.time() - start_time))
-    with open("result.txt", mode='w') as result:
-        result.write("loading listing data completed, it took" + str(time.time() - loading_listing_data_start_time) + "seconds\n")
-        print(len(listings))
-        result.write(str(len(listings)))
-        result.write("\n")
-        #print(listing_threads.shape)
-        #print("total time: {:f}".format(time.time() - start_time))
+    searching_listing_threads_data_start_time = time.time()
+    listing_threads = all_listing_threads[all_listing_threads[:, 0] == anon_item_id]
+    print("searching listing threads data for the specified item id completed, it took {:f} seconds".format(time.time() - searching_listing_threads_data_start_time))
+    print("total time: {:f}".format(time.time() - start_time))
+    
+    print(listings.shape)
+    print(listing_threads.shape)
+    print("total time: {:f}".format(time.time() - start_time))
     
 
     #all_listings = readFromCsv("../ebay_best_offer_bargaining_data/anon_bo_lists_tmp_2.csv")
