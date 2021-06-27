@@ -1,5 +1,5 @@
 import sys, getopt
-import numpy as np
+#import numpy as np
 import csv
 import time
 from modules import csv_io
@@ -43,14 +43,14 @@ def main():
             csv_reader = csv.reader(data_set)
             line_count = 0
             # the count of rows to load
-            max_rows_count = 1000000
+            #max_rows_count = 100000
             for row in csv_reader:
-                #print(row)                
+                print(row)                
                 #filtering_flag = False
-                if line_count == max_rows_count:
-                    break
+                #if line_count == max_rows_count:
+                #    break
                 if line_count == 0:
-                    listing_threads_fieldnames = row
+                    listings_fieldnames = row
                     line_count += 1
                     continue
                 # filtering items whose anon_product_ids are unique
@@ -67,9 +67,16 @@ def main():
                     
                 #if int(row[0]) == anon_item_id:
                 #    listings.append(row)
+                
+                # filtering items with anon_product_id missing
                 if int(row[2]) == 547957:
                     print(row)
                     filtered_listings.append(row)
+
+                # filtering items with no reference prices
+                #if row[15] == "" and row[17] == "" and row[19] == "" and row[34] == "":
+                #    print(row)
+                #    filtered_listings.append(row)
                 line_count += 1
     except Exception as ex:
         print(ex)
@@ -93,6 +100,7 @@ def main():
                     break
                 if line_count == 0:
                     line_count += 1
+                    listing_threads_fieldnames = row
                     continue
                 print(row)
                 # filtering threads connected to filtered listing items by anon_item_id
@@ -118,8 +126,8 @@ def main():
         result.write(str(len(filtered_listing_threads)))
         result.write("\n")
 
-    csv_io.writeToCsv("../ebay_best_offer_bargaining_data/filtered_anon_bo_lists.csv", listings_fieldnames, filtered_listings)
-    csv_io.writeToCsv("../ebay_best_offer_bargaining_data/filtered_anon_bo_threads.csv", listing_threads_fieldnames, filtered_listing_threads)    
+    csv_io.writeToCsv("../ebay_best_offer_bargaining_data/filtered_anon_bo_lists_1.csv", listings_fieldnames, filtered_listings)
+    csv_io.writeToCsv("../ebay_best_offer_bargaining_data/filtered_anon_bo_threads_1.csv", listing_threads_fieldnames, filtered_listing_threads)    
     
 if __name__ == "__main__":
 

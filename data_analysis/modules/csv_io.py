@@ -1,3 +1,5 @@
+import csv
+
 def writeToCsv(filename, fieldnames, data_list):
     with open(filename, mode='w') as data:
         data_writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
