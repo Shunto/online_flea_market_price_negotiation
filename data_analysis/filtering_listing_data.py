@@ -2,6 +2,7 @@ import sys, getopt
 import numpy as np
 import csv
 import time
+from modules import csv_io
 
 start_time = time.time()
 
@@ -117,31 +118,8 @@ def main():
         result.write(str(len(filtered_listing_threads)))
         result.write("\n")
 
-    writeToCsv("../ebay_best_offer_bargaining_data/filtered_anon_bo_lists.csv", listings_fieldnames, filtered_listings)
-    writeToCsv("../ebay_best_offer_bargaining_data/filtered_anon_bo_threads.csv", listing_threads_fieldnames, filtered_listing_threads)
-    
-
-def writeToCsv(filename, fieldnames, data_list):
-    with open(filename, mode='w') as data:
-        data_writer = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        writer = csv.DictWriter(data, fieldnames=fieldnames)
-
-        writer.writeheader()
-        for entry in data_list:
-            data_writer.writerow(entry)
-
-def readFromCsv(filepath):
-    data = []
-    with open(filepath, mode='r') as data_set:
-        csv_reader = csv.DictReader(data_set)
-        line_count = 0
-        for row in csv_reader:
-            if line_count == 0:
-                line_count += 1
-            data.append(row)
-            line_count += 1
-    return data
-        
+    csv_io.writeToCsv("../ebay_best_offer_bargaining_data/filtered_anon_bo_lists.csv", listings_fieldnames, filtered_listings)
+    csv_io.writeToCsv("../ebay_best_offer_bargaining_data/filtered_anon_bo_threads.csv", listing_threads_fieldnames, filtered_listing_threads)    
     
 if __name__ == "__main__":
 
