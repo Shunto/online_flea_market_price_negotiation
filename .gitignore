@@ -17,5 +17,7 @@ anon_bo_threads.csv
 anon_bo_threads.csv.gz
 bargaining_data.zip
 sequential_bargaining_QJE_code.zip
+filtered_anon_bo_lists.csv
+filtered_anon_bo_threads.csv
 
-result.txt
+*result.txt
